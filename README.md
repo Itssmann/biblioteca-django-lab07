@@ -110,9 +110,9 @@ aggregate devuelve un diccionario porque resume toda la consulta en valores, sin
 
 ### Entrega
 
-La biblioteca contiene las cinco entidades originales (Autor, Libro, Editorial, Categoria y Lector), FichaAutor (1:1) y Prestamo (intermedio N:M). Las técnicas de los ejercicios 9-13 están implementadas sobre estas siete entidades. Si el docente exige una investigación diferente de la aplicación de las semanas anteriores, se debe aplicar también a ese otro proyecto; no se proporcionó aquí ese modelo de datos.
+Las partes 1 y 2 del laboratorio corresponden a este mismo proyecto de biblioteca. La investigación propia contiene las cinco entidades originales (Autor, Libro, Editorial, Categoria y Lector), FichaAutor (1:1) y Prestamo (intermedio N:M). Los ejercicios 9-13 usan estas siete entidades: descuento de Libro.copias_disponibles con F() dentro de transaction.atomic(), estado de Prestamo, total de cantidad × monto, reportes por libro y estado, LibroQuerySet reutilizado en listado y reporte, y medición de consultas antes y después de optimizar.
 
-La entrega del laboratorio incluye adem?s el documento Word con respuestas, justificaciones y capturas. Capturar migraciones, datos en el Admin, formulario exitoso/fallido, conteos antes/despu?s del rollback, reporte y salida de medir_consultas. El comando de datos permite reproducir la muestra, pero no acredita por sí solo la carga manual desde el Admin solicitada en el ejercicio 2.
+La entrega del laboratorio incluye además el documento Word con respuestas, justificaciones y capturas de ambas partes sobre esta biblioteca. Capturar migraciones, datos en el Admin, formulario exitoso/fallido, conteos antes/después del rollback, reporte y salida de medir_consultas. El comando de datos permite reproducir la muestra, pero no acredita por sí solo la carga manual desde el Admin solicitada en el ejercicio 2.
 
 
 ### Verificacion ejecutada el 4 de octubre de 2026
