@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Préstamos</h1><p><a href="{% url 'library:crear_prestamo' %}">Registrar nuevo préstamo</a></p>
+  <table><thead><tr><th>Libro</th><th>Lector</th><th>Préstamo</th><th>Devolución esperada</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>
+    {% for prestamo in prestamos %}
+    {% url 'library:editar_prestamo' prestamo.pk as editar_url %}
+    {% url 'library:eliminar_prestamo' prestamo.pk as eliminar_url %}
+    <tr>
+      <td>{{ prestamo.libro.titulo }}</td>
+      <td>{{ prestamo.lector.nombre }}</td>
+      <td>{{ prestamo.fecha_prestamo|date:"d/m/Y" }}</td>
+      <td>{{ prestamo.fecha_devolucion_esperada|date:"d/m/Y" }}</td>
+      {# Mismo fragmento reutilizado que en libro_detalle.html (Ejercicio 11) #}
+      <td>{% include "library/_prestamo_estado.html" %}</td>
+      {% include "library/_acciones_cell.html" with editar_url=editar_url eliminar_url=eliminar_url %}
+    </tr>
+    {% empty %}<tr><td colspan="6">No hay préstamos registrados.</td></tr>{% endfor %}
+  </tbody></table>
+{% endblock %}

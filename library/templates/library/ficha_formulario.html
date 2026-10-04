@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{% if editar %}Editar ficha de {{ autor.nombre }}{% else %}Crear ficha de {{ autor.nombre }}{% endif %}</h1>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Guardar</button></form>
+  <p><a href="{% url 'library:detalle_autor' autor.pk %}">Volver al autor</a></p>
+{% endblock %}

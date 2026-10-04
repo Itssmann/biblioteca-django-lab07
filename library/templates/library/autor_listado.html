@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Autores</h1><p><a href="{% url 'library:crear_autor' %}">Registrar nuevo autor</a></p>
+  <table><thead><tr><th>Nombre</th><th>Nacionalidad</th><th>Libros</th><th>Acciones</th></tr></thead><tbody>{% for autor in autores %}
+    {% url 'library:detalle_autor' autor.pk as ver_url %}
+    {% url 'library:editar_autor' autor.pk as editar_url %}
+    {% url 'library:eliminar_autor' autor.pk as eliminar_url %}
+    <tr>
+      <td>{{ autor.nombre }}</td>
+      <td>{{ autor.nacionalidad|default:"—" }}</td>
+      {# Ejercicio 5 (alternativo): filtro length sobre el queryset inverso del FK #}
+      <td>{{ autor.libros.all|length }}</td>
+      {% include "library/_acciones_cell.html" with ver_url=ver_url editar_url=editar_url eliminar_url=eliminar_url %}
+    </tr>
+  {% empty %}<tr><td colspan="4">No hay autores registrados.</td></tr>{% endfor %}</tbody></table>
+{% endblock %}

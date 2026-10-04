@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Editoriales</h1><p><a href="{% url 'library:crear_editorial' %}">Registrar nueva editorial</a></p>
+  <table><thead><tr><th>Nombre</th><th>País</th><th>Libros</th><th>Acciones</th></tr></thead><tbody>
+    {% for editorial in editoriales %}
+    <tr><td>{{ editorial.nombre }}</td><td>{{ editorial.pais|default:"—" }}</td><td>{{ editorial.libros.count }}</td>
+      <td class="acciones"><a href="{% url 'library:editar_editorial' editorial.pk %}">Editar</a><a href="{% url 'library:eliminar_editorial' editorial.pk %}">Eliminar</a></td></tr>
+    {% empty %}<tr><td colspan="4">No hay editoriales registradas.</td></tr>{% endfor %}
+  </tbody></table>
+{% endblock %}

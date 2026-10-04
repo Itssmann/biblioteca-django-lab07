@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Reporte de biblioteca - Semana 07</h1>
+<p>Unidades prestadas (histórico): {{ totales.unidades }} | Importe histórico: S/ {{ totales.importe|floatformat:2 }}</p>
+<h2>Préstamos por libro</h2>
+<table><tr><th>Libro</th><th>Autor</th><th>Préstamos</th><th>Copias disponibles</th></tr>
+{% for libro in ranking %}<tr><td>{{ libro.titulo }}</td><td>{{ libro.autor.nombre }}</td><td>{{ libro.total_prestamos }}</td><td>{{ libro.copias_disponibles }}</td></tr>{% empty %}<tr><td colspan="4">Sin libros registrados.</td></tr>{% endfor %}</table>
+<h2>Agrupado por estado</h2>
+<table><tr><th>Estado</th><th>Préstamos</th><th>Unidades</th></tr>{% for fila in estados %}<tr><td>{{ fila.estado }}</td><td>{{ fila.total }}</td><td>{{ fila.unidades }}</td></tr>{% empty %}<tr><td colspan="3">Sin préstamos.</td></tr>{% endfor %}</table>
+<h2>Libros disponibles</h2><ul>{% for libro in disponibles %}<li>{{ libro.titulo }}: {{ libro.copias_disponibles }} copias</li>{% empty %}<li>Sin existencias.</li>{% endfor %}</ul>
+<a href="{% url 'library:crear_prestamo' %}">Registrar operación transaccional</a>
+{% endblock %}

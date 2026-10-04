@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Eliminar autor</h1><p>¿Confirma la eliminación del autor «{{ autor.nombre }}»? Sus libros asociados también serán eliminados.</p>
+  <form method="post">{% csrf_token %}<button type="submit">Confirmar eliminación</button></form>
+  <p><a href="{% url 'library:listado_autores' %}">Cancelar</a></p>
+{% endblock %}

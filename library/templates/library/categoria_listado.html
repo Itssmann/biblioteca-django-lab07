@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Categorías</h1><p><a href="{% url 'library:crear_categoria' %}">Registrar nueva categoría</a></p>
+  <table><thead><tr><th>Nombre</th><th>Descripción</th><th>Libros</th><th>Acciones</th></tr></thead><tbody>
+    {% for categoria in categorias %}
+    <tr><td>{{ categoria.nombre }}</td><td>{{ categoria.descripcion|default:"—" }}</td><td>{{ categoria.libros.count }}</td>
+      <td class="acciones"><a href="{% url 'library:editar_categoria' categoria.pk %}">Editar</a><a href="{% url 'library:eliminar_categoria' categoria.pk %}">Eliminar</a></td></tr>
+    {% empty %}<tr><td colspan="4">No hay categorías registradas.</td></tr>{% endfor %}
+  </tbody></table>
+{% endblock %}

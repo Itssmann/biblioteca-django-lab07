@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Registrar nuevo libro</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar libro</button>
+  </form>
+  <p><a href="{% url 'library:listado_libros' %}">Volver al catálogo</a></p>
+{% endblock %}

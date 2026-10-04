@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Libros</h1>
+  <p><a href="{% url 'library:crear_libro' %}">Registrar nuevo libro</a></p>
+  {# Ejercicio 6: esta tabla es el catálogo público; la columna Disponible usa las clases .disponible/.prestado definidas en los estilos de base.html #}
+  <table>
+    <thead><tr><th>Título</th><th>Autor</th><th>ISBN</th><th>Año</th><th>Disponible</th><th>Acciones</th></tr></thead>
+    <tbody>{% for libro in libros %}
+      {% url 'library:detalle_libro' libro.pk as ver_url %}
+      {% url 'library:editar_libro' libro.pk as editar_url %}
+      {% url 'library:eliminar_libro' libro.pk as eliminar_url %}
+      <tr>
+        <td>{{ libro.titulo }}</td>
+        {# Ejercicio 5: filtro upper aplicado sobre el nombre del autor #}
+        <td>{{ libro.autor.nombre|upper }}</td>
+        <td>{{ libro.isbn }}</td>
+        <td>{{ libro.anio }}</td>
+        <td class="{% if libro.disponible %}disponible{% else %}prestado{% endif %}">{% if libro.disponible %}Sí{% else %}No{% endif %}</td>
+        {% include "library/_acciones_cell.html" with ver_url=ver_url editar_url=editar_url eliminar_url=eliminar_url %}
+      </tr>
+    {% empty %}<tr><td colspan="6">No hay libros registrados.</td></tr>{% endfor %}</tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Eliminar categoría</h1><p>¿Confirma la eliminación de «{{ categoria.nombre }}»?</p>
+  <form method="post">{% csrf_token %}<button type="submit">Confirmar eliminación</button></form>
+  <p><a href="{% url 'library:listado_categorias' %}">Cancelar</a></p>
+{% endblock %}

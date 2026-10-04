@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{% if editar %}Editar autor{% else %}Registrar autor{% endif %}</h1>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">{% if editar %}Guardar cambios{% else %}Registrar{% endif %}</button></form>
+  <p><a href="{% url 'library:listado_autores' %}">Volver al listado</a></p>
+{% endblock %}

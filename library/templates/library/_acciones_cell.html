@@ -1,0 +1,7 @@
+{# Ejercicio 7: fragmento reutilizable con las acciones Ver/Editar/Eliminar. #}
+{# Las urls llegan ya resueltas via {% url ... as variable %} desde quien incluye este partial. #}
+<td class="acciones">
+  {% if ver_url %}<a href="{{ ver_url }}">Ver</a>{% endif %}
+  <a href="{{ editar_url }}">Editar</a>
+  <a href="{{ eliminar_url }}">Eliminar</a>
+</td>

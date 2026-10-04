@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{{ autor.nombre }}</h1>
+  <p>Nacionalidad: {{ autor.nacionalidad|default:"—" }}</p>
+
+  <h2>Ficha biográfica</h2>
+  {# Esta sección depende de la relación OneToOneField (Autor.ficha); no todo autor tiene ficha, por eso se valida con {% if %} antes de usarla. #}
+  {% if autor.ficha %}
+    <p>{{ autor.ficha.biografia|default:"Sin biografía registrada." }}</p>
+    {% if autor.ficha.sitio_web %}<p><a href="{{ autor.ficha.sitio_web }}">Sitio web</a></p>{% endif %}
+    <p><a href="{% url 'library:editar_ficha_autor' autor.pk %}">Editar ficha</a></p>
+    <p><a href="{% url 'library:eliminar_ficha_autor' autor.pk %}">Eliminar ficha</a></p>
+  {% else %}
+    <p><em>Este autor todavía no tiene ficha biográfica.</em></p>
+    <p><a href="{% url 'library:crear_ficha_autor' autor.pk %}">Crear ficha</a></p>
+  {% endif %}
+
+  <h2>Libros de este autor ({{ libros|length }} libro{{ libros|length|pluralize }})</h2>
+  <table>
+    <thead><tr><th>Título</th><th>Año</th></tr></thead>
+    <tbody>
+      {% for libro in libros %}
+      <tr><td><a href="{% url 'library:detalle_libro' libro.pk %}">{{ libro.titulo }}</a></td><td>{{ libro.anio }}</td></tr>
+      {% empty %}
+      <tr><td colspan="2">Este autor no tiene libros registrados.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p><a href="{% url 'library:listado_autores' %}">Volver al listado</a></p>
+{% endblock %}

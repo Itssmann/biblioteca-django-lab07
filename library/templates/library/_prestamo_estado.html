@@ -1,0 +1,7 @@
+{# Ejercicio 11: estado de un Prestamo (modelo intermedio N:M), reutilizado #}
+{# tanto en el listado de préstamos como en el historial dentro de un libro. #}
+{% if prestamo.devuelto %}
+  <span style="color:#087a2d;">Devuelto</span>
+{% else %}
+  <span style="color:#a11;">Pendiente</span>
+{% endif %}

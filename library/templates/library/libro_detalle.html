@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{{ libro.titulo }}</h1>
+  <p>Autor: <a href="{% url 'library:detalle_autor' libro.autor.pk %}">{{ libro.autor.nombre }}</a></p>
+  <p>Editorial: {{ libro.editorial|default:"Sin editorial asignada" }}</p>
+  <p>Categoría: {{ libro.categoria|default:"Sin categoría asignada" }}</p>
+  <p>ISBN: {{ libro.isbn }} — Año: {{ libro.anio }}</p>
+  <p>Disponible: {% if libro.disponible %}Sí{% else %}No{% endif %}</p>
+
+  <h2>Historial de préstamos</h2>
+  {# Ejercicio 11: el estado (Devuelto/Pendiente) se reutiliza con include desde _prestamo_estado.html, igual que en prestamo_listado.html #}
+  <table>
+    <thead><tr><th>Lector</th><th>Préstamo</th><th>Devolución esperada</th><th>Estado</th></tr></thead>
+    <tbody>
+      {% for prestamo in prestamos %}
+      <tr>
+        <td>{{ prestamo.lector.nombre }}</td>
+        <td>{{ prestamo.fecha_prestamo|date:"d/m/Y" }}</td>
+        <td>{{ prestamo.fecha_devolucion_esperada|date:"d/m/Y" }}</td>
+        <td>{% include "library/_prestamo_estado.html" %}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4">Este libro no tiene préstamos registrados.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p><a href="{% url 'library:listado_libros' %}">Volver al catálogo</a></p>
+{% endblock %}

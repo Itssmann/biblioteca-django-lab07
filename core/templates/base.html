@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteca</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem auto; max-width: 960px; padding: 0 1rem; }
+    nav { margin-bottom: 2rem; } table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: .6rem; text-align: left; }
+    th { background: #f2f2f2; } .disponible { color: #087a2d; } .prestado { color: #a11; }
+    .acciones { display: flex; gap: .75rem; } button { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header><p><strong>Biblioteca de barrio</strong></p><p>Catálogo y gestión de préstamos</p></header>
+  <nav><a href="{% url 'inicio' %}">Inicio</a> | <a href="{% url 'library:listado_libros' %}">Libros</a> | <a href="{% url 'library:listado_autores' %}">Autores</a> | <a href="{% url 'library:listado_editoriales' %}">Editoriales</a> | <a href="{% url 'library:listado_categorias' %}">Categorías</a> | <a href="{% url 'library:listado_lectores' %}">Lectores</a> | <a href="{% url 'library:listado_prestamos' %}">Préstamos</a> | <a href="{% url 'library:reporte' %}">Reporte ORM</a></nav>
+  <main>{% block content %}{% endblock %}</main>
+  <footer><hr><p>Biblioteca de barrio &copy; {% now "Y" %}</p></footer>
+</body>
+</html>

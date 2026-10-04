@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Eliminar ficha biográfica</h1>
+  <p>¿Confirma la eliminación de la ficha de «{{ autor.nombre }}»? El autor y sus libros se conservarán.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar eliminación</button>
+  </form>
+  <p><a href="{% url 'library:detalle_autor' autor.pk %}">Cancelar</a></p>
+{% endblock %}

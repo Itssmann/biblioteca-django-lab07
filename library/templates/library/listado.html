@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Catálogo de libros</h1>
+  <p><a href="{% url 'library:crear_libro' %}">Registrar nuevo libro</a></p>
+  <table>
+    <thead><tr><th>Título</th><th>Autor</th><th>ISBN</th><th>Año</th><th>Disponibilidad</th></tr></thead>
+    <tbody>
+      {% for libro in libros %}
+        <tr>
+          <td>{{ libro.titulo }}</td><td>{{ libro.autor }}</td><td>{{ libro.isbn }}</td><td>{{ libro.anio }}</td>
+          <td class="{% if libro.disponible %}disponible{% else %}prestado{% endif %}">
+            {% if libro.disponible %}Disponible{% else %}Prestado{% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

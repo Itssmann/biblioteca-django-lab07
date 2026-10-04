@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Lectores</h1><p><a href="{% url 'library:crear_lector' %}">Registrar nuevo lector</a></p>
+  <table><thead><tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Acciones</th></tr></thead><tbody>
+    {% for lector in lectores %}
+    <tr><td>{{ lector.nombre }}</td><td>{{ lector.email }}</td><td>{{ lector.telefono|default:"—" }}</td>
+      <td class="acciones"><a href="{% url 'library:editar_lector' lector.pk %}">Editar</a><a href="{% url 'library:eliminar_lector' lector.pk %}">Eliminar</a></td></tr>
+    {% empty %}<tr><td colspan="4">No hay lectores registrados.</td></tr>{% endfor %}
+  </tbody></table>
+{% endblock %}
